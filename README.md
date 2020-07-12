@@ -7,6 +7,10 @@ Native implementation of bcrypt for react-native
 ```sh
 npm install bcrypt-react-native
 ```
+or
+```sh
+yarn add bcrypt-react-native
+```
 
 ## Usage
 
@@ -15,7 +19,8 @@ import BcryptReactNative from "bcrypt-react-native";
 
 // ...
 
-const result = await BcryptReactNative.multiply(3, 7);
+const salt = await BcryptReactNative.getSalt(10);
+const hash = await BcryptReactNative.hash(salt, 'password');
 ```
 
 ## Contributing

@@ -1,17 +1,33 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
 import BcryptReactNative from 'bcrypt-react-native';
+import { StyleSheet, View, Button, Alert } from 'react-native';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const _genSalt = async () => {
+    try {
+      const salt = await BcryptReactNative.getSalt(10);
+      console.log({ salt });
+      Alert.alert('Salt', salt);
+    } catch (e) {
+      console.log({ e });
+    }
+  };
 
-  React.useEffect(() => {
-    BcryptReactNative.multiply(3, 7).then(setResult);
-  }, []);
+  const _hash = async () => {
+    try {
+      const salt = await BcryptReactNative.getSalt(10);
+      const hash = await BcryptReactNative.hash(salt, 'password');
+      console.log({ hash });
+      Alert.alert('Hash', hash);
+    } catch (e) {
+      console.log({ e });
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Button title={'Generate salt'} onPress={_genSalt} />
+      <Button title={'Hash'} onPress={_hash} />
     </View>
   );
 }

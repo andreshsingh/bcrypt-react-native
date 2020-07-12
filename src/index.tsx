@@ -1,7 +1,8 @@
 import { NativeModules } from 'react-native';
 
 type BcryptReactNativeType = {
-  multiply(a: number, b: number): Promise<number>;
+  getSalt(rounds: number): Promise<string>;
+  hash(salt: string, rawValue: string): Promise<string>;
 };
 
 const { BcryptReactNative } = NativeModules;
