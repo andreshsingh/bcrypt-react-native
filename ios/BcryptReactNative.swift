@@ -47,12 +47,8 @@ class BcryptReactNative: NSObject {
     resolver resolve: RCTPromiseResolveBlock,
     rejector reject: RCTPromiseRejectBlock
     ) -> Void {
-    do {
-      let success = try BCrypt.check(password, hashed: hash)
+      let success = BCrypt.Check(password, hashed: hash)
       resolve(success)
-    } catch let error {
-      reject("500","Error Comparing Hash",error)
-    }
   }
 
 }
