@@ -39,4 +39,20 @@ class BcryptReactNative: NSObject {
     }
   }
 
+  @objc
+  func compareSync(
+    _
+    password: String,
+    hash: String,
+    resolver resolve: RCTPromiseResolveBlock,
+    rejector reject: RCTPromiseRejectBlock
+    ) -> Void {
+    do {
+      let success = try BCrypt.check(password, hashed: hash)
+      resolve(success)
+    } catch let error {
+      reject("500","Error Comparing Hash",error)
+    }
+  }
+
 }

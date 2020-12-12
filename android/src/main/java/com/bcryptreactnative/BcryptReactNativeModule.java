@@ -44,4 +44,18 @@ public class BcryptReactNativeModule extends ReactContextBaseJavaModule {
             promise.reject("Error Generating Hash", e);
         }
     }
+
+    @ReactMethod
+    public void compareSync(
+            String password,
+            String hash,
+            Promise promise
+    ) {
+        try {
+            Boolean success = BCrypt.checkpw(password, hash);
+            promise.resolve(success);
+        } catch (Exception e){
+            promise.reject("Error Checking Hash", e);
+        }
+    }
 }

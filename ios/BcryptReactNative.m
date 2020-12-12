@@ -12,4 +12,9 @@ RCT_EXTERN_METHOD(hash:(NSString *)salt
                   resolver: (RCTPromiseResolveBlock)resolve
                   rejector: (RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(compareSync:(NSString *)password
+                  hash:(NSString *)hash
+                  resolver: (RCTPromiseResolveBlock)resolve
+                  rejector: (RCTPromiseRejectBlock)reject)
+
 @end
