@@ -1,6 +1,8 @@
 # bcrypt-react-native
 
-Native implementation of bcrypt for react-native
+**Native** implementation of bcrypt for react-native.
+
+Uses [BCrypt](https://libraries.io/cocoapods/BCrypt) for iOS.
 
 ## Installation
 
@@ -12,15 +14,24 @@ or
 yarn add bcrypt-react-native
 ```
 
+```sh
+cd ios && pod install
+```
+
 ## Usage
 
 ```js
-import BcryptReactNative from "bcrypt-react-native";
+import BcryptReactNative from 'bcrypt-react-native';
 
 // ...
+try{
 
 const salt = await BcryptReactNative.getSalt(10);
 const hash = await BcryptReactNative.hash(salt, 'password');
+const isSame = await BcryptReactNative.compareSync('password', hash);
+} catch(e) {
+  console.log({ e })
+}
 ```
 
 ## Contributing
